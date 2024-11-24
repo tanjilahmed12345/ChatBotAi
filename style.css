@@ -80,6 +80,7 @@ body {
     gap: 20px;
     font-size: 20px;
     overflow: auto;
+ 
 }
 
 .user-chat-box {
@@ -99,6 +100,7 @@ body {
     display: flex;
     gap: 10px;
     flex-direction: column;
+    position: relative;
 }
 
 .choose-img {
@@ -110,6 +112,8 @@ body {
     right: 0;
     border-radius: 50%;
     filter: drop-shadow(2px 2px 10px black);
+    margin-top: -2px;
+    width: 6%;
 }
 
 .ai-chat-box {
@@ -124,7 +128,7 @@ body {
     color: white;
     background-color: rgba(0, 0, 0, 0.361);
     position: relative;
-    left: 8%;
+    left: 6%;
     border-radius: 0px 12px 12px 12px;
     box-shadow: 2px 2px 10px black;
 }
@@ -133,6 +137,7 @@ body {
     position: absolute;
     left: 0;
     filter: drop-shadow(2px 2px 10px black);
+    width: 6%;
 }
 
 .prompt-area {
@@ -223,8 +228,7 @@ body {
     gap: 20px;
     position: fixed;
     /* Make sidebar fixed */
-    left: 0px;
-    /* Hidden by default (off-canvas) */
+    left: 0px; 
     top: 35px;
     transition: left 0.3s ease;
     /* Smooth slide transition */
@@ -282,8 +286,7 @@ body {
     cursor: pointer;
     font-size: 16px;
     text-align: left;
-    transition: background 0.3s;
-    width: 250px;
+    transition: background 0.3s; 
 }
 
 .tabs .tab:hover {
@@ -306,12 +309,9 @@ body {
 }
 
 @media (max-width: 600px) {
-    .sidebar {
-        width: 200px;
-    }
-
+    
     .ai-chat-box {
-        width: 80%;
+        width: 90%;
     }
 
     .user-chat-box {
@@ -320,24 +320,28 @@ body {
     }
 
     .chat-container {
-        font-size: 16px;
+        font-size: 12px;
+        padding: 8px;
     }
 
     .ai-chat-area {
-        border-radius: 8px 20px 20px 20px;
+        border-radius: 4px 8px 8px 8px;
+        font-size: 12px;
+        left: 10%;
+    }
+    #aiImage{
+        width: 10%;
+    }
+    #userImage{
+        width: 8%;
     }
 
     .user-chat-area {
-        border-radius: 20px 5px 20px 20px;
+        border-radius: 8px 4px 8px 8px;
+        font-size: 12px;
+        right: 2%;
     }
 
-    .chat-container {
-        height: 85%;
-    }
-
-    .prompt-area {
-        height: 15%;
-    }
 
     .prompt-area input {
         border-radius: 30px;
@@ -346,8 +350,8 @@ body {
     }
 
     .prompt-area button {
-        width: 55px;
-        height: 55px;
+        width: 45px;
+        height: 45px;
     }
 
     /* Add styles for the current chat name display */
@@ -363,6 +367,13 @@ body {
 
     .tabs .tab {
         font-size: 14px;
+    }
+    .hamburger{
+        left: 8px;
+    }
+    .sidebar{
+        padding:12px 8px;
+        gap: 10px;
     }
 
 

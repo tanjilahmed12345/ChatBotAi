@@ -129,12 +129,12 @@ function renderChatHistory() {
     const activeChat = chatHistory[activeChatIndex];
     activeChat?.messages?.forEach(chat => {
         const html = chat.sender === "user"
-            ? `<img src="user.jpg" alt="" id="userImage" width="6%">
+            ? `<img src="user.jpg" alt="" id="userImage" >
                 <div class="user-chat-area">
                     ${chat.message}
                     ${chat.file ? `<img src="data:${chat.file.mime_type};base64,${chat.file.data}" class="choose-img" />` : ""}
                 </div>`
-            : `<img src="ai.png" alt="" id="aiImage" width="8%">
+            : `<img src="ai.png" alt="" id="aiImage" >
                 <div class="ai-chat-area">${chat.message}</div>`;
         const chatBox = createChatBox(html, chat.sender === "user" ? "user-chat-box" : "ai-chat-box");
         chatContainer.appendChild(chatBox);
@@ -200,7 +200,7 @@ function handleChatResponse() {
     saveChatToLocalStorage();
 
     // User chat HTML
-    let html = `<img src="user.jpg" alt="" id="userImage" width="7%">
+    let html = `<img src="user.jpg" alt="" id="userImage">
                 <div class="user-chat-area">
                     ${user.message}
                     ${user.file.data ? `<img src="data:${user.file.mime_type};base64,${user.file.data}" class="choose-img" />` : ""}
@@ -212,7 +212,7 @@ function handleChatResponse() {
 
     // AI Response
     setTimeout(() => {
-        let html = `<img src="ai.png" alt="" id="aiImage" width="10%">
+        let html = `<img src="ai.png" alt="" id="aiImage" >
                     <div class="ai-chat-area"> 
                         <img src="loading.webp" alt="" class="load" width="50px"> 
                     </div>`;
@@ -266,6 +266,29 @@ inputField.addEventListener("keydown", (e) => {
 submitBtn.addEventListener("click", () => {
     handleChatResponse();
 });
+
+
+// Taking Image for input 
+imageInput.addEventListener("change",()=>{
+    const file = imageInput.files[0];
+    if(!file) return;
+    let reader = new FileReader()
+    reader.onload=(e)=>{
+        let base64String = e.target.result.split(",")[1];
+        user.file={
+            mime_type: file.type,
+            data: base64String
+        }    
+        image.src= `data:${user.file.mime_type};base64,${user.file.data}`
+        image.classList.add("prompt-img");
+    }
+    reader.readAsDataURL(file);
+})
+
+imageBtn.addEventListener("click",() =>{
+    imageBtn.querySelector("input").click()
+})
+
 // Toggle Sidebar Visibility
 document.getElementById("hamburger").addEventListener("click", () => {
     console.log("click:" );
@@ -273,7 +296,7 @@ document.getElementById("hamburger").addEventListener("click", () => {
     const mainContent = document.querySelector(".main-content");
 
     // If the sidebar is hidden, show it; if it's visible, hide it
-    if (sidebar.style.left === "0px") {
+    if (sidebar.style.left === "0px" || sidebar.style.left === "") {
         sidebar.style.left = "-300px"; // Slide out of view
         mainContent.style.marginLeft = "60px"; // Maintain the initial gap
     } else {
