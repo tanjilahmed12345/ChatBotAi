@@ -6,29 +6,58 @@
     <title>Tanjil ChatBot</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body> 
-    <!-- thre will be a navbar and i will update this code later on -->
-    <div class="chat-container">
-        <!-- <div class="user-chat-box">
-            <img src="user.png" alt="" id="userImage" width="50">
-            <div class="user-chat-area">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+<body>
+ 
+    <!-- <div class="sidebar">
+        <div class="sidebar-input-div">
+            <input
+                id="new-chat"
+                type="text"
+                placeholder="New Chat"
+            />
+        </div>
+        <div class="tabs" id="chat-tabs"></div>
+    </div> -->
+
+    <!-- Sidebar Container (Including Hamburger Icon) -->
+    <div class="sidebar-container">
+        <!-- Hamburger Icon -->
+        <div id="hamburger" class="hamburger">
+            &#9776;
+        </div>
+
+        <!-- Off-canvas Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-input-div">
+                <input
+                    id="new-chat"
+                    type="text"
+                    placeholder="New Chat"
+                />
             </div>
-        </div> -->
-        <div class="ai-chat-box">
-            <img src="ai.png" alt="" id="aiImage" width="10%">
-            <div class="ai-chat-area">
-                Hello! Welcome to the OpenAI platform created by Ahmed Tanjil. How can I assist you today?
-            </div>
+            <div class="tabs" id="chat-tabs"></div>
         </div>
     </div>
 
-    <div class="prompt-area">
-        <input type="text" id="prompt" placeholder="Message...">
-        <button id="image"><img src="img.svg" alt="">
-            <input type="file" accept="images/*" hidden>
-        </button>
-        <button id="submit"><img src="submit.svg" alt=""></button>
+
+
+    <!-- Main Chat Section -->
+    <div class="main-content">
+        <!-- Bot Name -->
+        <!-- <div class="bot-name">Tanjil AI</div> -->
+         <div class="header-logo" >
+            <img src="TanjilLogo.webp" alt="">
+         </div>
+
+        <div class="chat-container"></div>
+        <div class="prompt-area">
+            <input type="text" id="prompt" placeholder="Message...">
+            <button id="image">
+                <img src="img.svg" alt="">
+                <input type="file" accept="images/*" hidden>
+            </button>
+            <button id="submit"><img src="submit.svg" alt=""></button>
+        </div>
     </div>
 
     <script src="script.js"></script>
