@@ -258,7 +258,17 @@ async function generateResponse(aiChatBox) {
 
 // Event listeners for prompt input, file input, and submit button
 inputField.addEventListener("keydown", (e) => {
-    if (e.key == "Enter" && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault(); // Prevent adding a newline
+        handleChatResponse();
+    }
+});
+
+// Add support for "input" event on mobile
+inputField.addEventListener("input", (e) => {
+    const value = e.target.value;
+    if (value.includes("\n") && !e.shiftKey) {
+        e.target.value = value.replace(/\n/g, ""); // Remove newline
         handleChatResponse();
     }
 });
