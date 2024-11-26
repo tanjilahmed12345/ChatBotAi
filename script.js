@@ -89,40 +89,40 @@ function renderChatHistory() {
     // Check if chatHistory is empty
     if (chatHistory.length === 0) {
         // Show welcome message when no chats exist
-         // Show welcome message with typewriter effect
-         addLogoImage();
-         const welcomeMessage = document.createElement('div');
-         welcomeMessage.classList.add('welcome-message');
-         chatContainer.appendChild(welcomeMessage);
- 
-         const text = "I hope you're doing well! How may I assist you?"; // The text to animate
- 
-         let index = 0;
-         
-         function typeText() {
-           if (index < text.length) {
-             welcomeMessage.textContent += text.charAt(index); // Add one character at a time
-             index++;
-             setTimeout(typeText, 40); // Adjust typing speed here
-           } else {
-             welcomeMessage.style.borderRight = "none"; // Remove the blinking cursor when done
-           }
-         }
- 
-         typeText(); // Start the typing effect
+        // Show welcome message with typewriter effect
+        addLogoImage();
+        const welcomeMessage = document.createElement('div');
+        welcomeMessage.classList.add('welcome-message');
+        chatContainer.appendChild(welcomeMessage);
 
-         // Adding Logo image for welcome Page 
-            function addLogoImage() {
-                // Create an image container and append the image
-                const logoContainer = document.createElement('div');
-                logoContainer.classList.add('welcome-logo-container');
-                const img = document.createElement('img');
-                img.src = 'TanjilLogo.webp'; // Replace with your actual image path
-                img.alt = 'Tanjil Logo'; // Alt text for accessibility
-                logoContainer.appendChild(img);
-                chatContainer.appendChild(logoContainer);
+        const text = "I hope you're doing well! How may I assist you?"; // The text to animate
+
+        let index = 0;
+
+        function typeText() {
+            if (index < text.length) {
+                welcomeMessage.textContent += text.charAt(index); // Add one character at a time
+                index++;
+                setTimeout(typeText, 40); // Adjust typing speed here
+            } else {
+                welcomeMessage.style.borderRight = "none"; // Remove the blinking cursor when done
             }
- 
+        }
+
+        typeText(); // Start the typing effect
+
+        // Adding Logo image for welcome Page 
+        function addLogoImage() {
+            // Create an image container and append the image
+            const logoContainer = document.createElement('div');
+            logoContainer.classList.add('welcome-logo-container');
+            const img = document.createElement('img');
+            img.src = 'TanjilLogo.webp'; // Replace with your actual image path
+            img.alt = 'Tanjil Logo'; // Alt text for accessibility
+            logoContainer.appendChild(img);
+            chatContainer.appendChild(logoContainer);
+        }
+
         return; // Exit function early to prevent any other rendering
     }
 
@@ -269,39 +269,44 @@ submitBtn.addEventListener("click", () => {
 
 
 // Taking Image for input 
-imageInput.addEventListener("change",()=>{
+imageInput.addEventListener("change", () => {
     const file = imageInput.files[0];
-    if(!file) return;
+    if (!file) return;
     let reader = new FileReader()
-    reader.onload=(e)=>{
+    reader.onload = (e) => {
         let base64String = e.target.result.split(",")[1];
-        user.file={
+        user.file = {
             mime_type: file.type,
             data: base64String
-        }    
-        image.src= `data:${user.file.mime_type};base64,${user.file.data}`
+        }
+        image.src = `data:${user.file.mime_type};base64,${user.file.data}`
         image.classList.add("prompt-img");
     }
     reader.readAsDataURL(file);
 })
 
-imageBtn.addEventListener("click",() =>{
+imageBtn.addEventListener("click", () => {
     imageBtn.querySelector("input").click()
 })
 
 // Toggle Sidebar Visibility
 document.getElementById("hamburger").addEventListener("click", () => {
-    console.log("click:" );
-    const sidebar = document.getElementById("sidebar");
+    console.log("click:");
+    const sidebar = document.getElementById("sidebar-container");
     const mainContent = document.querySelector(".main-content");
+    const headerLogo = document.querySelector(".header-logo img");
 
     // If the sidebar is hidden, show it; if it's visible, hide it
     if (sidebar.style.left === "0px" || sidebar.style.left === "") {
         sidebar.style.left = "-300px"; // Slide out of view
-        mainContent.style.marginLeft = "60px"; // Maintain the initial gap
+        mainContent.style.marginLeft = "0px"; // Maintain the initial gap
+        // mainContent.style.width="100%";
+        // headerLogo.style.marginLeft = "60px";
     } else {
         sidebar.style.left = "0px"; // Slide into view
         mainContent.style.marginLeft = "300px"; // Create a gap on the left side
+        // headerLogo.style.marginLeft = "6px";
+        // mainContent.style.width="auto";
     }
 });
 
